@@ -1,0 +1,36 @@
+@import "../../../scss/commons/commons.scss";
+.SideBarMenu {
+  background-color: $background-primary;
+  position: absolute;
+  left: 0;
+  top: 0;
+  // height: calc(100% - 100px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  @include transition(width);
+  &.expanded {
+    width: 300px;
+  }
+  &.collapsed {
+    width: 68px;
+  }
+  .menuButton {
+    display: flex;
+    justify-content: end;
+    .hamburgerIcon {
+      cursor: pointer;
+      border: none;
+      background-color: transparent;
+      color: white;
+      padding: 5px 0;
+      width: 68px;
+      display: flex;
+      svg {
+        height: 32px;
+        color: $primary-color;
+        width: 100%;
+      }
+    }
+  }
+}

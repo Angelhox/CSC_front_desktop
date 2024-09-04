@@ -1,0 +1,39 @@
+.ui.form {
+  .field {
+    .input {
+      input {
+        background-color: $background-primary;
+        padding: 1.1rem 1rem;
+        font-size: 1.41rem;
+        border-radius: 0.3rem;
+        color: $font-light;
+        &:hover,
+        &:active,
+        &:focus {
+          background-color: $background-primary !important;
+          color: $font-light;
+        }
+      }
+      i {
+        color: $font-light;
+      }
+    }
+    .ui.button {
+      background-color: $primary-color;
+      color: $font-light;
+      border-radius: 0.4rem;
+    }
+  }
+  .field.error {
+    .ui.input {
+      input {
+        background-color: $background-primary;
+        border: 1px solid $danger;
+        color: $danger;
+      }
+      i {
+        color: $danger;
+      }
+    }
+  }
+}

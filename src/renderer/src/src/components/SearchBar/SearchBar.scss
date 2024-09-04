@@ -1,0 +1,41 @@
+.search-bar {
+  .basic-single {
+    width: 100%;
+    .select--is-disabled {
+      background-color: black !important;
+
+    }
+    .select__control {
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      &--is-disabled {
+        //Estilos para searchBar disabled
+        background-color: white !important;
+      }
+    }
+
+    .select__menu {
+      z-index: 99999;
+      padding: 0 !important;
+    }
+    .container-options {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .select__value-container {
+      display: flex;
+      flex-direction: column;
+    }
+    .select__input-container {
+      height: 22px;
+      font-size: 15px;
+      input {
+        font-size: 15px;
+      }
+    }
+  }
+
+  width: 100% !important;
+}

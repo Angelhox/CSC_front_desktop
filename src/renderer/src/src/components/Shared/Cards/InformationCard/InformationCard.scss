@@ -1,0 +1,60 @@
+@import "../../../../scss/commons/commons.scss";
+:root {
+  --dark-blue: #001446;
+}
+.card {
+  position: relative;
+  width: 24rem;
+  height: 28rem;
+  background-color: lightblue;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.94;
+  transition: 0.3s;
+  &:hover &-img {
+    height: 75%;
+    opacity: 1;
+  }
+  &:hover &-title {
+    scale: 1;
+    opacity: 1;
+  }
+  &:hover &-title {
+    translate: -50% 300%;
+    opacity: 1;
+  }
+  &-img {
+    flex: 1 0 auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: var(--dark-blue);
+    text-shadow: 0 0.1rem 0.1rem #0008;
+  }
+  &-title {
+    position: absolute;
+    left: 50%;
+    translate: -50% 500%;
+    color: #fff;
+    white-space: nowrap;
+    scale: 2.5;
+    opacity: 0;
+    transition: 0.5s;
+  }
+
+  &-body {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    text-align: center;
+    strong {
+      font-size: 1.8rem;
+    }
+    p {
+      margin: 0.5rem 0;
+    }
+  }
+}

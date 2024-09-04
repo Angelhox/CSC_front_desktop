@@ -1,0 +1,220 @@
+@import "../../../../scss/commons/commons.scss";
+// $primary: #18253c;
+// $primary: #fff;
+// $secondary: #00dd53;
+// $bg: #0e1523;
+// $bg: #f5f5f5;
+
+.body {
+  width: 98%;
+  max-width: 98%;
+  max-height: calc(86.5% - 0.8rem);
+  min-height: calc(86.5% - 0.8rem);
+  margin: 0.8rem auto 0.4rem auto;
+  border-radius: 0.6rem;
+  overflow: auto;
+  & ::-webkit-scrollbar {
+    border-radius: 0.5rem;
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0.5rem;
+    background-color: #0004;
+    visibility: hidden;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+  }
+  .search-slider-cards {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    padding: 0 2rem 0 0;
+    z-index: 300;
+    margin: 0 0 2rem 0;
+    svg {
+      font-size: 1.5rem;
+      color: $font-primary;
+    }
+    .input-group {
+      margin-top: 0;
+      width: 100%;
+    }
+  }
+
+  .slider-cards {
+    margin-top: 3rem;
+    width: 100%;
+    height: 50%;
+    max-height: 50%;
+    // background-color: $bg;
+    background-color: $background-light;
+    border-collapse: collapse;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    // display: grid;
+    // grid-template-columns: repeat(4, 1fr);
+    // gap: 2rem;
+    font: normal 1rem sans-serif;
+    //   overflow: auto;
+    .card {
+      position: relative;
+      margin: .5rem 0.1rem;
+      width: 22rem;
+      // width: 100%;
+      height: 28rem;
+      // background-color: $primary;
+      background-color: $background-light;
+      border-radius: 1rem;
+      border: 0.1rem solid transparent;
+      box-shadow: 0 0.2rem 0.6rem $secondary-border-color;
+      transition: 0.5s ease-in-out;
+      overflow: hidden;
+      // color: #fff;
+      color: $font-dark;
+      &.selected {
+        border: 0.1rem solid $primary-color;
+        &:hover {
+          border: 0.2rem solid $primary-color-hover;
+          transform: scale(1.02);
+        }
+      }
+      &:hover {
+        border: 0.2rem solid $third-border-color;
+        // transform: scale(1.05);
+        transform: scale(1.02);
+      }
+      &::before,
+      &::after {
+        position: absolute;
+        content: "";
+        background-color: $background-primary;
+        border-radius: 50%;
+        transition: 0.5s ease-in-out;
+        z-index: 100;
+      }
+      &::before {
+        top: -6%;
+        right: -6%;
+        width: 9rem;
+        height: 9rem;
+      }
+      &::after {
+        bottom: -6%;
+        left: -6%;
+        width: 5rem;
+        height: 5rem;
+      }
+      &:hover::before {
+        transform: scale(1.8);
+      }
+      &:hover::after {
+        transform: scale(0);
+      }
+      .card-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 200;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: .5rem;
+        .card-img {
+          width: auto;
+          height: 9.5rem;
+          transform: rotate(180deg);
+        }
+        .card-title {
+          font-size: 1.5rem;
+          text-transform: capitalize;
+          transition-delay: 0.1s;
+        }
+        .card-indicator {
+          display: none;
+          transform: translateY(4rem);
+          transition: 0.5s ease-in-out;
+          color: $primary-color;
+          font-weight: bold;
+
+          &.valid {
+            display: block;
+          }
+        }
+        .card-img,
+        .card-title {
+          transform: translateY(4rem);
+          transition: 0.5s ease-in-out;
+        }
+        .card-body {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          transition-delay: 0.2s;
+          .card-description {
+            padding: 0 0.5rem;
+            text-align: center;
+          }
+          .card-price {
+            display: none;
+            font: bolder 1.5rem sans-serif;
+          }
+          .card-star {
+            .star {
+              font-size: 1.4rem;
+              color: gold;
+            }
+          }
+          .card-price {
+            font: bolder 1.5rem sans-serif;
+          }
+        }
+        .card-footer {
+          transition-delay: 0.3s;
+          width: 100%;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          .btn {
+            padding: 1rem 1.5rem;
+            background-color: unset;
+            border: none;
+            outline: none;
+            border-radius: 2rem;
+            // color: #fff;
+            // color: $font-dark;
+            cursor: pointer;
+          }
+          .btn-success {
+            background-color: $primary-color;
+          }
+          .btn-border {
+            border: solid 0.1rem $primary-color-hover;
+          }
+        }
+        .card-body,
+        .card-footer {
+          transform: translateY(10rem);
+          transition: 0.5s ease-in-out;
+        }
+      }
+      &:hover .card-img,
+      &:hover .card-title,
+      &:hover .card-indicator,
+      &:hover .card-body,
+      &:hover .card-footer {
+        transform: translateY(0);
+      }
+    }
+  }
+}

@@ -1,0 +1,95 @@
+@import '../../scss/commons/commons.scss';
+.Container {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  min-height: 100%;
+  padding: 0.5rem 0.5rem;
+  display: grid;
+  gap: 1rem;
+  // grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+    'container-list  container-actions'
+    'container-list container-actions';
+  .container-list {
+    grid-area: container-list;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+  }
+  .container-actions {
+    grid-area: container-actions;
+    .actions {
+      width: 100%;
+      height: 100%;
+      background-color: #fff5;
+      backdrop-filter: blur(7px);
+      box-shadow: 0 0.4rem 0.8rem #0005;
+      border-radius: 0.8rem;
+      overflow: hidden;
+      .header {
+        width: 100%;
+        height: 9%;
+        background-color: #fff4;
+        padding: 0.8rem 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        h2 {
+          color: $font-primary;
+        }
+      }
+      .body {
+        width: 100%;
+        height: calc(89% - 0.8rem);
+        max-height: calc(89% - 0.8rem);
+        background-color: #fffb;
+        margin: 0.8rem auto;
+        border-radius: 0.6rem;
+        overflow: auto;
+        & ::-webkit-scrollbar {
+          border-radius: 0.5rem;
+          width: 0.5rem;
+          height: 0.5rem;
+        }
+        &::-webkit-scrollbar-thumb {
+          border-radius: 0.5rem;
+          // background-color: #0004;
+          background-color: $background-primary;
+          visibility: hidden;
+        }
+        &:hover::-webkit-scrollbar-thumb {
+          visibility: visible;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 600px) {
+  /* Estilos para pantallas pequeñas aquí */
+  .Container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas:
+      'container-list container-list'
+      'container-actions container-actions';
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  /* Estilos para pantallas medianas aquí */
+  .Container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas:
+      'container-list container-list'
+      'container-actions container-actions';
+  }
+}
+@media only screen and (min-width: 1025px) {
+  /* Estilos para pantallas grandes aquí */
+}

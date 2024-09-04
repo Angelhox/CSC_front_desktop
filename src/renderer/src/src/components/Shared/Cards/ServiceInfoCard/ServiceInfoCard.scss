@@ -1,0 +1,84 @@
+@import '../../../../scss/commons/commons.scss';
+.ServiceInfoCard {
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  .card-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .card-subtitle {
+      width: 100%;
+      text-align: center;
+      :nth-child(n) {
+        margin: 0.5rem 0;
+        padding: 0;
+        color: $font-primary;
+      }
+    }
+    .card-img {
+      width: auto;
+      padding: 0.5rem;
+      min-width: 12rem;
+      background-color: #31476e99;
+      border-radius: 50%;
+    }
+    .card-title {
+      margin: 1rem auto;
+      color: $font-primary;
+    }
+    .divider {
+      margin: 0.5rem;
+      width: 100%;
+      color: $font-primary;
+      border-bottom: solid 0.15rem $secondary-border-color;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      > * {
+        margin: 0 0.25rem;
+      }
+    }
+    .card-values {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin: 0.5rem auto;
+      div {
+        flex-grow: 1;
+        text-align: center;
+        p {
+          margin: 0.5rem 0;
+          font-size: 1.3rem;
+        }
+        .title {
+          color: $primary-color;
+          font-weight: bold;
+          font-size: 1.15rem;
+        }
+      }
+    }
+    .card-xtra {
+      width: 100%;
+      text-align: center;
+      p {
+        margin: 0;
+        color: $font-primary;
+        font-size: 1.2rem;
+        font-weight: normal;
+      }
+    }
+    .card-chart {
+      width: 100%;
+      flex-grow: 1;
+      max-height: 29rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem auto;
+    }
+
+  }
+}

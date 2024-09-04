@@ -1,0 +1,36 @@
+@import "commons.scss";
+.confirmDialog {
+  height: 5rem;
+  margin: 0 auto;
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  div {
+    div {
+      background-color: red;
+      width: 100%;
+    }
+  }
+  button {
+    width: 50%;
+    display: block;
+  }
+}
+.swal {
+  .swal2-actions {
+    display: flex !important;
+
+    width: 100%;
+    .swal2-confirm {
+      background-color: $background-secondary !important;
+    }
+    .swal2-cancel {
+      background-color: $primary-color !important;
+    }
+    button {
+      flex-grow: 1;
+      max-width: 10rem;
+      flex-shrink: 1;
+    }
+  }
+}

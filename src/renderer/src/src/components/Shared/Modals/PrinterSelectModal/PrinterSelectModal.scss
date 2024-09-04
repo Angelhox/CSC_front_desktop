@@ -1,0 +1,65 @@
+/* Modal.css */
+@import '../../../../scss/commons/commons.scss';
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 80%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.modal-header {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.modal-body {
+  margin-bottom: 20px;
+  select {
+    border: solid 1px black;
+    padding: 1rem 5rem;
+  }
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.modal-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: $primary-color;
+  color: #fff;
+  font-size: 16px;
+}
+
+.modal-button.primary {
+  background: $background-secondary;
+}
+
+.modal-button:hover {
+  background: #888;
+}
+
+.modal-button.primary:hover {
+  background: #2565a6;
+}

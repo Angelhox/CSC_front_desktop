@@ -1,0 +1,61 @@
+@import "../commons/commons.scss";
+.input-group {
+  position: relative;
+  // width: 22rem;
+  // width: 45%;
+  min-width: 13rem;
+  margin: 0.6rem 0.2rem;
+
+  &.type-google {
+    input,
+    select {
+      &:focus {
+        border: 0.15rem solid $font-four !important;
+      }
+    }
+    label {
+      left: 0.5rem;
+      padding: 0.4rem;
+      background-color: $background-light;
+    }
+  }
+  input,
+  select {
+    width: 100%;
+    padding: 1rem;
+    background-color: $background-light;
+    color: $font-dark;
+    font-size: 1.1rem;
+    // border: none;
+    border: 0.15rem solid $secondary-border-color;
+    border-radius: 0.4rem;
+    outline: none;
+    &:focus + label,
+    &:not(:placeholder-shown) + label,
+    &:valid + label {
+      top: 4%;
+      color: $font-four;
+      font-size: 0.9rem;
+    }
+    &:not(:focus) + label {
+      color: $font-gray;
+    }
+  }
+  label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $font-dark;
+    font-size: 1.1rem;
+    transition: 0.2s ease-in-out;
+  }
+  p {
+    // font-style: italic;
+    // font-weight: 600;
+    // font-size: .8rem;
+    font-size: 0.9rem;
+
+    color: $primary-color;
+    text-align: center;
+  }
+}

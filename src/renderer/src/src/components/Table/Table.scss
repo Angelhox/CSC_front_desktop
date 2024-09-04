@@ -1,0 +1,208 @@
+@import '../../scss/commons/commons.scss';
+td img {
+  width: 36px;
+  height: 36px;
+  margin-right: 5rem;
+  border-radius: 0.5rem;
+  vertical-align: middle;
+}
+.Table {
+  width: 100%;
+  height: 100%;
+  background-color: #fff5;
+  backdrop-filter: blur(7px);
+  box-shadow: 0 0.4rem 0.8rem #0005;
+  border-radius: 0.8rem;
+  overflow: hidden;
+
+  .header {
+    width: 100%;
+    max-width: 100%;
+    height: 9%;
+    background-color: #fff4;
+    padding: 0.8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    .Items {
+      display: flex;
+      justify-content: space-between;
+      .item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid $primary-border-color;
+        border-radius: 0.5rem;
+        padding: 15px;
+        margin: 0.5rem;
+        svg {
+          color: $primary-color;
+          font-size: 1.5rem;
+        }
+        span {
+          color: $font-primary;
+          padding: 0 0.2rem;
+        }
+        &:hover {
+          background-color: $background-primary;
+          // border-color: $secondary-border-color;
+          span {
+            color: $font-light !important;
+          }
+          transition: 0.2s;
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+  .body {
+    width: 98%;
+    max-width: 98%;
+    max-height: calc(86.5% - 0.8rem);
+    min-height: calc(86.5% - 0.8rem);
+    margin: 0.8rem auto 0.4rem auto;
+    border-radius: 0.6rem;
+    overflow: auto;
+    & ::-webkit-scrollbar {
+      border-radius: 0.5rem;
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 0.5rem;
+      background-color: #0004;
+      // background-color: $primary-color-hover;
+      visibility: hidden;
+    }
+    &:hover::-webkit-scrollbar-thumb {
+      visibility: visible;
+    }
+  }
+  .pagination {
+    width: 100%;
+    min-width: 10rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    button {
+      margin: 0;
+      width: 15%;
+      border-radius: 0.4rem;
+      border: 1px solid $border-primary;
+      opacity: 0.7;
+      background-color: $background-light;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      svg {
+        font-size: 1.2rem;
+        color: $font-primary;
+      }
+    }
+  }
+  table {
+    width: 100%;
+    thead {
+      tr {
+        th {
+          div {
+            width: 100%;
+            max-width: 100%;
+            display: flex;
+            background-color: #fff5;
+            border-radius: 0.4rem;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0 10px;
+            margin-top: 0.5rem;
+
+            input {
+              margin: 0.5rem 1rem;
+              width: 50%;
+              max-width: 400px;
+              min-width: 250px !important;
+              height: 1.8rem;
+              border-radius: 0.4rem;
+              padding: 10px 25px 10px 10px;
+              &:hover,
+              :active,
+              :focus {
+                border: solid 2px black;
+              }
+            }
+            span {
+              position: absolute;
+              left: 52%;
+              top: 58%;
+              transform: translateY(-50%);
+              cursor: pointer;
+              color: #888;
+              font-weight: bold;
+            }
+            svg {
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        &:nth-child(even) {
+          background-color: #0000000b;
+          td {
+            button {
+              background-color: $background-light;
+            }
+          }
+        }
+        &:hover {
+          background-color: #fff6;
+        }
+      }
+    }
+  }
+}
+thead,
+th {
+  position: sticky;
+  top: 0;
+  left: 0;
+  // background-color: #d5d1defe;
+  background-color: $background-secondary;
+
+  color: $font-light;
+}
+
+th {
+  border-collapse: collapse;
+  padding: 0.5rem 1rem;
+  text-align: left;
+}
+table,
+td {
+  border-collapse: collapse;
+  padding: 1rem 1rem;
+  text-align: left;
+  button {
+    width: 100%;
+    cursor: pointer;
+    border-radius: 0.4rem;
+    transition: 0.2s ease-in-out;
+    svg {
+      margin: 0;
+      padding: 0;
+      color: $primary-color-hover;
+      font-size: 1.5rem;
+    }
+    &:hover {
+      border: 1.5px solid $secondary-border-color;
+      transform: scale(1.2);
+    }
+  }
+}
+// ?
+@media (max-width: 100px) {
+  td:not(:first-of-type) {
+    min-width: 12.1rem;
+  }
+}

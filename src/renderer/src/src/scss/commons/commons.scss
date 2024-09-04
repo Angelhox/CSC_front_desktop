@@ -1,0 +1,57 @@
+@import './colors.scss';
+@import '../semantic/form.scss';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  letter-spacing: 0.05rem;
+  border: none;
+}
+@mixin transition($property) {
+  transition: $property 0.2s ease-in-out;
+}
+.notify-success {
+  padding: 0.2rem;
+  color: #fff;
+  font-size: 15px;
+
+  background-color: #27ae60;
+
+  svg {
+    color: white;
+  }
+  button {
+    background-color: #27ae60;
+    color: white;
+  }
+}
+.notify-error {
+  padding: 0.2rem;
+  color: #fff;
+  font-size: 15px;
+  background-color: $primary-color;
+
+  svg {
+    color: white;
+  }
+  button {
+    color: white;
+    background-color: $primary-color;
+  }
+}
+.html-swal-center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  table {
+    width: 100%;
+    th,
+    td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #dddddd;
+    }
+  }
+}

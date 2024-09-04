@@ -1,0 +1,41 @@
+@import '../../../scss/commons/commons.scss';
+.header {
+  width: 100%;
+  max-width: 100%;
+  height: 9%;
+  max-height: 9%;
+  background-color: #fff4;
+  padding: 0.8rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  .Items {
+    display: flex;
+    justify-content: space-between;
+    .item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid $primary-border-color;
+      border-radius: 0.5rem;
+      padding: 15px;
+      margin: 0.5rem;
+      svg {
+        color: $primary-color;
+        font-size: 1.5rem;
+      }
+      span {
+        color: $font-primary;
+        padding: 0 0.2rem;
+      }
+      &:hover {
+        background-color: $background-primary;
+        // border-color: $secondary-border-color;
+        span {
+          color: $font-light !important;
+        }
+        transition: 0.2s;
+        opacity: 0.9;
+      }
+    }
+  }
+}

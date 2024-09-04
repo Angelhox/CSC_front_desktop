@@ -1,0 +1,13 @@
+@import "../../scss/commons/commons.scss";
+.TopBar {
+  background-color: $background-primary;
+  color: white;
+  padding: 0 10px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  h1 {
+    color: $primary-color;
+    margin: 0 10px;
+  }
+}

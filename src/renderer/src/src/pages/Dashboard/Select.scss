@@ -1,0 +1,89 @@
+@import "../../scss/commons/commons.scss";
+$primary: #00000099;
+$border: 0.07rem solid #77c2ea;
+$hover: #0006;
+$box-shadow: 0 0.1rem 0.5rem #0008;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.ContainerDashboard {
+  height: 100vh;
+  background-color: $background-primary;
+  font: lighter 1rem sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .select-box {
+    width: 28rem;
+    transition: 0.3s ease-in-out;
+    .selected-option {
+      position: relative;
+      transition: 0.3s ease-in-out;
+      input {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        cursor: pointer;
+        text-transform: capitalize;
+        border: none;
+        outline: none;
+        border-radius: 1rem;
+        font-size: 1.5rem;
+        box-shadow: $box-shadow;
+      }
+      &.active::after {
+        transform: translateY(-50%) rotate(225deg);
+      }
+      &::after {
+        position: absolute;
+        content: "";
+        right: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        width: 0.5rem;
+        height: 0.5rem;
+        border-right: 0.1rem solid #000;
+        border-bottom: 0.1rem solid #000;
+      }
+      &:hover {
+        transform: scale(1.08);
+      }
+      &.active + .options {
+        max-height: 21rem;
+      }
+    }
+    .options {
+      max-height: 0;
+      background-color: $primary;
+      list-style-type: none;
+      border-radius: 1rem;
+      margin-top: 1rem;
+      box-shadow: $box-shadow;
+      overflow: hidden;
+      transition: 0.3s ease-in-out;
+      -webkit-backdrop-filter: blur(0.1rem);
+      .option {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #fff;
+        padding: 1rem 1.5rem;
+        cursor: pointer;
+        text-transform: capitalize;
+        transition: 0.3s ease-in-out;
+        &:not(:last-of-type) {
+          border-bottom: $border;
+        }
+        &:hover {
+          background-color: $hover;
+          transform: scale(1.02);
+        }
+        img {
+          width: 2rem;
+          height: auto;
+        }
+      }
+    }
+  }
+}
