@@ -46,6 +46,48 @@ export async function createServicioContratado(
     }
   }
 }
+export async function descontratarServicio(
+  contratadoId: number | string
+  // contratoId: number | string,
+  // servicioBase: number
+): Promise<IServiciosContratados> {
+  try {
+    // if (servicioBase === 1) {
+    //   const response = await axiosInstance.delete(
+    //     `/servicio.contratado/medidor/${contratadoId}/${contratoId}`
+    //   )
+    //   return response.data
+    // } else {
+    const response = await axiosInstance.delete(`/servicio.contratado/${contratadoId}`)
+    return response.data
+    // }
+  } catch (error) {
+    if (isAxiosError(error)) {
+      throw new Error(error.response?.data.message || 'Failed to descontract servicioContratado')
+    } else {
+      throw new Error('An unexpected error occurred')
+    }
+  }
+}
+export async function updateServicioContratado(
+  servicioContratado: IServiciosContratados,
+  contratadoId: number | string
+): Promise<IServiciosContratados> {
+  try {
+    const response = await axiosInstance.patch(
+      `/servicio.contratado/${contratadoId}`,
+      servicioContratado
+    )
+    return response.data
+  } catch (error) {
+    if (isAxiosError(error)) {
+      throw new Error(error.response?.data.message || 'Failed to update a servicioContratado')
+    } else {
+      throw new Error('An unexpected error occurred')
+    }
+  }
+}
+
 function validateDataForMedidor(servicioContratado: IServiciosContratados): void {
   if (
     !servicioContratado.medidor?.fechaInstalacion ||

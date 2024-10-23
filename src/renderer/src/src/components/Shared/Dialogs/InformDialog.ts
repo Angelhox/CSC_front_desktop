@@ -6,7 +6,7 @@ export interface InformDialogProps {
   icon: SweetAlertIcon
   showConfirmButton?: boolean
   confirmButtonText?: string
-  onConfirmAction: (value?: string) => void
+  onConfirmAction?: (value?: string) => void
   showCancelButton?: boolean
   cancelButtonText?: string
   cancelButtonColor?: string

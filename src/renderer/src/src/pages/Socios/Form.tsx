@@ -39,7 +39,7 @@ interface IFormProps {
   returnForm?: () => void
 }
 
-export function Form({ data, returnForm }: IFormProps) {
+export function Form({ data, returnForm }: IFormProps): JSX.Element {
   const { reloadRecords } = UseSocios()
 
   const {
@@ -106,15 +106,15 @@ export function Form({ data, returnForm }: IFormProps) {
       }
     }
   })
-  const onSubmit = (formData: ISocio) => {
+  const onSubmit = (formData: ISocio): void => {
     handleSubmitWithSubmit(formData)
   }
 
-  const handleCancel = () => {
+  const handleCancel = (): void => {
     console.log('Handle cancel')
     reset(undefined, { keepDefaultValues: false })
   }
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (): void => {
     const confirmProps = {
       title: '¿Quieres eliminar este registro?',
       text: 'No podras revertir esta acción',

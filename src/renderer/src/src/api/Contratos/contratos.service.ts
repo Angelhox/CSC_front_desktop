@@ -1,5 +1,8 @@
 import { isAxiosError } from 'axios'
-import { IContrato, IContratoSocioContrato } from '../../Interfaces/Contratos/contratos.interface'
+import {
+  IContratoSocioContrato,
+  ISocioContrato
+} from '../../Interfaces/Contratos/contratos.interface'
 import axiosInstance from '../../libs/axios'
 export async function getContratos(): Promise<IContratoSocioContrato[]> {
   try {
@@ -16,6 +19,24 @@ export async function getContratos(): Promise<IContratoSocioContrato[]> {
     }
   }
 }
+export async function getContratoByContrato(contratoId: number): Promise<IContratoSocioContrato> {
+  try {
+    console.log('Trying to get Contrato with id: ', contratoId)
+    const response = await axiosInstance.get<IContratoSocioContrato>(
+      `/socio.contrato/contrato/${contratoId}`
+    )
+    console.log('Contratos data: ', response.data)
+    return response.data
+  } catch (error) {
+    if (isAxiosError(error)) {
+      throw new Error(error.response?.data.message || 'Failed to fetch contrato')
+    } else {
+      console.log('Error: ', error)
+      throw new Error('An unexpected error occurred')
+    }
+  }
+}
+
 export async function getContratosBySocio(socioId: number): Promise<IContratoSocioContrato[]> {
   try {
     console.log('Trying to get Contratos by socio')
@@ -49,19 +70,59 @@ export async function createContrato(
   }
 }
 export async function updateContrato(
-  contrato: IContrato,
+  socioContrato: IContratoSocioContrato,
   contratoId: number | string
 ): Promise<IContratoSocioContrato> {
+  delete socioContrato.contrato.sectoresId
   try {
     const response = await axiosInstance.patch<IContratoSocioContrato>(
-      `/socio.contrato/${contratoId}`,
-      contrato
+      `/contratos/${contratoId}`,
+      socioContrato.contrato
     )
     return response.data
   } catch (error) {
     console.log('Error: ', error)
     if (isAxiosError(error)) {
-      throw new Error(error.response?.data.message || 'Failed to create an contrato')
+      throw new Error(error.response?.data.message || 'Failed to update an contrato')
+    } else {
+      throw new Error('An unexpected error occurred')
+    }
+  }
+}
+export async function changeSocio(
+  socioContrato: ISocioContrato,
+  contratacionId: number
+): Promise<ISocioContrato> {
+  try {
+    const response = await axiosInstance.patch<ISocioContrato>(
+      `/socio.contrato/change-socio/${contratacionId}`,
+      socioContrato
+    )
+    return response.data
+  } catch (error) {
+    console.log('Error: ', error)
+    if (isAxiosError(error)) {
+      throw new Error(error.response?.data.message || 'Failed to change socio')
+    } else {
+      throw new Error('An unexpected error occurred')
+    }
+  }
+}
+export async function changeSector(
+  contratoSocioContrato: IContratoSocioContrato,
+  contratoId: number,
+  sectorId: number
+): Promise<IContratoSocioContrato> {
+  try {
+    const response = await axiosInstance.patch<IContratoSocioContrato>(
+      `/contratos/${contratoId}/${sectorId}`,
+      contratoSocioContrato.contrato
+    )
+    return response.data
+  } catch (error) {
+    console.log('Error: ', error)
+    if (isAxiosError(error)) {
+      throw new Error(error.response?.data.message || 'Failed to change sector')
     } else {
       throw new Error('An unexpected error occurred')
     }

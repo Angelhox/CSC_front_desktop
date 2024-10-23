@@ -57,7 +57,7 @@ export function SearchBar({
       render={({ field }) => (
         <Select
           onChange={(option) => {
-            onChangeActions(option?.value)
+            option && option.value && onChangeActions(option.value)
             field.onChange(option?.value)
           }}
           className="basic-single"

@@ -1,6 +1,6 @@
 /* Modal.css */
 @import '../../../../scss/commons/commons.scss';
-.modal-overlay {
+.WithChildren-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,34 +11,47 @@
   justify-content: center;
   align-items: center;
   z-index: 999999;
+  // En caso de que se sobreponga a los bordes redius del contenedor
+  border-radius: 0.8rem;
 }
 
 .modal-container {
   background: #fff;
   padding: 20px;
   border-radius: 10px;
-  width: 400px;
+  width: fit-content;
   max-width: 80%;
+  height: fit-content;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-
 .modal-header {
   font-size: 24px;
-  margin-bottom: 10px;
+  text-align: center;
 }
-
 .modal-body {
-  margin-bottom: 20px;
-  select {
-    border: solid 1px black;
-    padding: 1rem 5rem;
+  width: 100%;
+  &.type-form {
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    h2 {
+      width: 100%;
+      text-align: center;
+    }
   }
 }
 
 .modal-footer {
   display: flex;
   justify-content: center;
+  width: 100%;
   gap: 10px;
 }
 
@@ -49,7 +62,7 @@
   cursor: pointer;
   background: $primary-color;
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .modal-button.primary {

@@ -86,7 +86,7 @@ const options: ChartOptions<'doughnut'> = {
   }
 }
 
-export function DoughnutChart({ chartData, label }: ChartProps) {
+export function DoughnutChart({ chartData, label }: ChartProps): JSX.Element {
   const [data, setData] = useState<ChartData<'doughnut', number[], unknown>>({
     labels: chartData.map((dataItem) => dataItem.label),
     datasets: [

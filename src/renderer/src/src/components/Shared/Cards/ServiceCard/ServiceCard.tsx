@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CSSProperties, MouseEventHandler, useState } from 'react'
 import {
+  contratadoActivoEstado,
   IServicios,
   IServiciosContratados
 } from '../../../../Interfaces/Servicios/servicios.interface'
@@ -36,8 +37,16 @@ type Props = {
   buttons?: ButtonsServiceCard[]
   showHeader?: boolean
 }
-const validateSelected = (serviciosContratados: IServiciosContratados[], servicio: IServicios) => {
-  return serviciosContratados.some((s) => s.servicio?.id === servicio.id)
+const validateSelected = (
+  serviciosContratados: IServiciosContratados[],
+  servicio: IServicios
+): { selected: boolean; status?: contratadoActivoEstado } => {
+  const selected = serviciosContratados.find((s) => s.servicio?.id === servicio.id)
+  if (selected) {
+    const status = selected.estado
+    return { selected: true, status: status }
+  }
+  return { selected: false }
 }
 export function ServiceCard({
   style,
@@ -55,7 +64,9 @@ export function ServiceCard({
   } else {
     if (serviciosContratadosSelected) {
       for (const servicio of dataServices) {
-        servicio.selected = validateSelected(serviciosContratadosSelected, servicio)
+        const { selected, status } = validateSelected(serviciosContratadosSelected, servicio)
+        servicio.selected = selected
+        servicio.statusForContract = status
       }
     }
     filteredServices = dataServices.filter((item) => {
@@ -99,7 +110,7 @@ export function ServiceCard({
                 <img src={services} alt="" className="card-img" />
                 <h1 className="card-title">{data.nombre}</h1>
                 <p className={`card-indicator ${data.selected ? ' valid' : ''}`}>
-                  {data.selected ? 'Contratado' : ''}
+                  {data.selected ? data.statusForContract : ''}
                 </p>
                 <div className="card-body">
                   <div className="card-description">{data.descripcion}</div>

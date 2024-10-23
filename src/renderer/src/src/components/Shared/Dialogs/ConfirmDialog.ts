@@ -1,14 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Swal from 'sweetalert2'
 
-interface ConfirmDialogProps {
+export interface ConfirmDialogProps {
   title: string
   text?: string
   confirmButtonText?: string
   cancelButtonText?: string
-  onConfirm?: () => void
-  onCancel?: (values: void) => Promise<void>
+  onConfirm?: (values?: any) => void | Promise<void>
+  onCancel?: (values?: any) => void
   beforeConfirmTitle?: string
   beforeConfirmText?: string
+  showBeforeConfirm?: boolean
 }
 export function ConfirmDialog({
   title,
@@ -16,6 +18,8 @@ export function ConfirmDialog({
   confirmButtonText,
   cancelButtonText,
   onConfirm,
+  onCancel,
+  showBeforeConfirm,
   beforeConfirmTitle,
   beforeConfirmText
 }: ConfirmDialogProps): void {
@@ -34,12 +38,18 @@ export function ConfirmDialog({
       if (onConfirm) {
         onConfirm()
       }
-      Swal.fire({
-        title: beforeConfirmTitle || '¡Hecho!',
-        text: beforeConfirmText || '',
-        icon: 'success',
-        showClass: { popup: 'swal' }
-      })
+      if (showBeforeConfirm) {
+        Swal.fire({
+          title: beforeConfirmTitle || '¡Hecho!',
+          text: beforeConfirmText || '',
+          icon: 'success',
+          showClass: { popup: 'swal' }
+        })
+      }
+    } else {
+      if (onCancel) {
+        onCancel()
+      }
     }
   })
 }

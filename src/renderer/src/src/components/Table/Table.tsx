@@ -17,6 +17,7 @@ import { TfiControlBackward } from 'react-icons/tfi'
 import { TfiControlSkipForward } from 'react-icons/tfi'
 import { TfiControlSkipBackward } from 'react-icons/tfi'
 import { IMenuActions } from '../../commons/interfaces/menu-actions'
+import { useContratoStore } from '@renderer/src/store/contratos'
 type Props = {
   columns: any
   defaultData: any
@@ -26,6 +27,7 @@ type Props = {
   loading: boolean
   error: string | null
   filterAttribute?: string
+  clearFilterAttribute?: () => void
 }
 
 export function Table({
@@ -36,7 +38,8 @@ export function Table({
   showMenuActions,
   loading,
   error,
-  filterAttribute
+  filterAttribute,
+  clearFilterAttribute
 }: Props): JSX.Element {
   const [data, setData] = useState(defaultData)
   // console.log('data in table: ', data)
@@ -45,6 +48,7 @@ export function Table({
   const [filtering, setFiltering] = useState('')
   const clearFilter = (): void => {
     setFiltering('')
+    clearFilterAttribute && clearFilterAttribute()
   }
   useEffect(() => {
     setData(defaultData)

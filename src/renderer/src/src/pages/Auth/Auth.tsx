@@ -1,25 +1,25 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Grid, GridColumn, GridRow, Image } from "semantic-ui-react";
-import "./Auth.scss";
-import { flag, logotemp, siluetComunity } from "../../assets";
-import { useState } from "react";
-import { LoginForm } from "../../components/Auth/LoginForm/LoginForm";
-import { AuthOptions } from "../../components/Auth/AuthOptions/AuthOptions";
+import { Grid, GridColumn, GridRow, Image } from 'semantic-ui-react'
+import './Auth.scss'
+import { flag, logotemp, siluetComunity } from '../../assets'
+import { useState } from 'react'
+import { LoginForm } from '../../components/Auth/LoginForm/LoginForm'
+import { AuthOptions } from '../../components/Auth/AuthOptions/AuthOptions'
 
 export function Auth() {
-  const [typeForm, setTypeForm] = useState<string>("");
+  const [typeForm, setTypeForm] = useState<string>('')
   const openLogin = (): void => {
-    setTypeForm("login");
-  };
+    setTypeForm('login')
+  }
   const goBack = (): void => {
-    setTypeForm("");
-  };
+    setTypeForm('')
+  }
   const renderForm = (): JSX.Element => {
-    if (typeForm === "login") {
-      return <LoginForm goBack={goBack} />;
+    if (typeForm === 'login') {
+      return <LoginForm goBack={goBack} />
     }
-    return <AuthOptions openLogin={openLogin} />;
-  };
+    return <AuthOptions openLogin={openLogin} />
+  }
   return (
     <div className="Auth">
       <div className="content-logo">
@@ -42,5 +42,5 @@ export function Auth() {
         <div className="content">{renderForm()}</div>
       </div>
     </div>
-  );
+  )
 }

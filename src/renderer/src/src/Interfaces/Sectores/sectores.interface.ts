@@ -1,7 +1,8 @@
-export interface dataSectores {
-  id: number;
-  barrio: string;
-  abreviatura: string;
-  codigo: string;
-  numeroSocios: string;
+export interface ISector {
+  id: number
+  barrio: string
+  abreviatura: string
+  codigo: string
+  numeroSocios: string
+  numeroCodigos: string
 }

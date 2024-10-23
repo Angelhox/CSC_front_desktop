@@ -1,6 +1,18 @@
 import { z } from 'zod'
 const estadoActivo = ['Activo', 'Inactivo'] as const
 const estadoSn = ['Si', 'No'] as const
+export const sectorContratoSchema = z.object({
+  contrato: z.object({
+    codigo: z
+      .string()
+      .min(6, { message: 'Debes ingresar mínimo 6 caracteres' })
+      .max(6, { message: 'Debes ingresar un máximo de 6 caracteres' }),
+    barrio: z
+      .string()
+      .min(3, { message: 'Ingresa el barrio' })
+      .max(45, { message: 'Ingresa un máximo de 45 caracteres' })
+  })
+})
 export const contratoSchema = z.object({
   codigo: z
     .string()
@@ -47,10 +59,36 @@ export const contratoSchema = z.object({
   referencia: z
     .string()
     .min(2, { message: 'Ingresa un mínimo de 2 caracteres' })
-    .max(45, { message: 'Ingresa un máximo de 45 caracteres' })
+    .max(45, { message: 'Ingresa un máximo de 45 caracteres' }),
+  sectoresId: z.preprocess(
+    (val) => {
+      if (typeof val === 'string') {
+        return parseFloat(val)
+      }
+      return val
+    },
+    z
+      .number({ invalid_type_error: 'Ingresa un número válido' })
+      .positive({ message: 'Ingresa un número válido' })
+      .min(1, { message: 'Ingresa un número válido' })
+      .int('Ingresa un número entero')
+  )
 })
 export const socioContratoSchema = z.object({
   sociosId: z.preprocess(
+    (val) => {
+      if (typeof val === 'string') {
+        return parseFloat(val)
+      }
+      return val
+    },
+    z
+      .number({ invalid_type_error: 'Ingresa un número válido' })
+      .positive({ message: 'Ingresa un número válido' })
+      .min(1, { message: 'Ingresa un número válido' })
+      .int('Ingresa un número entero')
+  ),
+  contratosId: z.preprocess(
     (val) => {
       if (typeof val === 'string') {
         return parseFloat(val)
@@ -119,11 +157,11 @@ export const contratoSocioContratoSchema = z.object({
   fechaContratacion: z.string().refine((dob) => new Date(dob).toString() !== 'Invalid Date', {
     message: 'Debes ingresar una fecha válida'
   }),
-  fechaBaja: z.optional(
-    z.string().refine((dob) => new Date(dob).toString() !== 'Invalid Date', {
-      message: 'Debes ingresar una fecha válida'
-    })
-  ),
+  // fechaBaja: z.optional(
+  //   z.string().refine((dob) => new Date(dob).toString() !== 'Invalid Date', {
+  //     message: 'Debes ingresar una fecha válida'
+  //   })
+  // ),
   estado: z.enum(estadoActivo, {
     errorMap: () => ({ message: 'Debes ingresar un estado válido' })
   }),

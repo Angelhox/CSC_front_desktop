@@ -39,7 +39,7 @@ export async function createServicio(servicio: IServicios): Promise<IServicios> 
   } catch (error) {
     console.log('Error: ', error)
     if (isAxiosError(error)) {
-      throw new Error(error.response?.data.message || 'Failed to create an servicio')
+      throw new Error(error.response?.data.message || 'Failed to create a servicio')
     } else {
       throw new Error('An unexpected error occurred')
     }
@@ -55,7 +55,7 @@ export async function updateServicio(
   } catch (error) {
     console.log('Error updating servicio: ', error)
     if (isAxiosError(error)) {
-      throw new Error(error.response?.data.message || 'Failed to update an servicio')
+      throw new Error(error.response?.data.message || 'Failed to update a servicio')
     } else {
       throw new Error('An unexpected error occurred')
     }

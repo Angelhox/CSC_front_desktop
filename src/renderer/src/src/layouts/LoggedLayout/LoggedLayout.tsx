@@ -1,71 +1,71 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FcAdvertising } from "react-icons/fc";
-import { FcHome } from "react-icons/fc";
-import { FcConferenceCall } from "react-icons/fc";
-import { FcBusinessman } from "react-icons/fc";
-import { FcStatistics } from "react-icons/fc";
-import { FcCollaboration } from "react-icons/fc";
-import { FcServices } from "react-icons/fc";
-import "./LoggedLayout.scss";
-import { SideBarMenu } from "../../components/SideBar/SideBarMenu/SideBarMenu";
-import { IMenuItem, IUsercard } from "../../commons/interfaces/left-menu";
-import { TopBar } from "../../components/TopBar/TopBar";
-import { useAuthStore } from "../../store/auth";
-import { IEmpleadoUsuario } from "../../Interfaces/Usuarios/usuarios.interface";
+import { FcAdvertising } from 'react-icons/fc'
+import { FcHome } from 'react-icons/fc'
+import { FcConferenceCall } from 'react-icons/fc'
+import { FcBusinessman } from 'react-icons/fc'
+import { FcStatistics } from 'react-icons/fc'
+import { FcCollaboration } from 'react-icons/fc'
+import { FcServices } from 'react-icons/fc'
+import './LoggedLayout.scss'
+import { SideBarMenu } from '../../components/SideBar/SideBarMenu/SideBarMenu'
+import { IMenuItem, IUsercard } from '../../commons/interfaces/left-menu'
+import { TopBar } from '../../components/TopBar/TopBar'
+import { useAuthStore } from '../../store/auth'
+import { IEmpleadoUsuario } from '../../Interfaces/Usuarios/usuarios.interface'
 interface Props {
-  children: JSX.Element;
+  children: JSX.Element
 }
 export default function LoggedLayout({ children }: Props) {
-  const profile: IEmpleadoUsuario = useAuthStore((state) => state.profile);
+  const profile: IEmpleadoUsuario = useAuthStore((state) => state.profile)
   const items: IMenuItem[] = [
     {
-      id: "1",
-      label: "Inicio",
+      id: '1',
+      label: 'Inicio',
       icon: FcHome,
-      url: "/home",
+      url: '/home'
     },
     {
-      id: "2",
-      label: "Socios",
+      id: '2',
+      label: 'Socios',
       icon: FcConferenceCall,
-      url: "/socios",
+      url: '/socios'
     },
     {
-      id: "3",
-      label: "Administradores",
+      id: '3',
+      label: 'Administradores',
       icon: FcBusinessman,
-      url: "/administradores",
+      url: '/administradores'
     },
     {
-      id: "4",
-      label: "Contratos",
+      id: '4',
+      label: 'Contratos',
       icon: FcCollaboration,
-      url: "/contratos",
+      url: '/contratos'
     },
     {
-      id: "5",
-      label: "Servicios",
+      id: '5',
+      label: 'Servicios',
       icon: FcServices,
-      url: "/servicios",
+      url: '/servicios'
     },
     {
-      id: "6",
-      label: "Dashboard",
+      id: '6',
+      label: 'Dashboard',
       icon: FcStatistics,
-      url: "/example",
-    },
-  ];
+      url: '/example'
+    }
+  ]
   const card: IUsercard = {
-    id: "card01",
+    id: 'card01',
     displayName: `${profile.empleado.primerNombre} ${profile.empleado.primerApellido}`,
     title: `${profile.rol.rol}`,
-    photoUrl: "https://robohash.org/user3",
-    url: "/",
-  };
+    photoUrl: 'https://robohash.org/user3',
+    url: '/'
+  }
 
   return (
     <div className="LoggedLayout">
-      <div className="content">
+      <div className="content" id="children-content">
         <div className="left-menu">
           <SideBarMenu items={items} card={card} />
         </div>
@@ -80,5 +80,5 @@ export default function LoggedLayout({ children }: Props) {
         <p>Footer</p>
       </div> */}
     </div>
-  );
+  )
 }

@@ -60,6 +60,7 @@
         margin: 0.5rem auto 0.5rem auto;
         padding: 0;
         color: $primary-color-hover;
+        font-size: 1.2rem;
         font-weight: bold;
       }
     }
@@ -95,11 +96,11 @@
         justify-content: space-evenly;
         flex-wrap: wrap;
         p {
-          font-weight: bold;
-          color: $primary-color-hover;
-          font-size: 15px;
+          font-weight: normal;
+          color: $font-red-dark;
+          font-size: 1rem;
           span {
-            font-size: 18px;
+            font-size: 1.2rem;
             color: $font-primary;
             font-weight: normal;
           }
