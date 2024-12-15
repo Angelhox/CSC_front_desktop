@@ -1,6 +1,6 @@
 export enum medidorEstado {
   Activo = 'Activo',
-  Innactivo = 'Innactivo'
+  Inactivo = 'Inactivo'
 }
 export interface IMedidor {
   id?: string | number

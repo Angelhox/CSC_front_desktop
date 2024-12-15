@@ -1,4 +1,20 @@
-@import './base.css';
+body {
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  #root{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    min-height: 100vh;
+    width: 100%;
+    background-color: gray;
+  }
+}
+
+/* @import './base.css';
 
 body {
   display: flex;
@@ -168,4 +184,4 @@ code {
   .actions {
     display: none;
   }
-}
+} */

@@ -1,6 +1,6 @@
 import z from 'zod'
 const estadoActivo = ['Activo', 'Inactivo'] as const
-const medidorSchema = z.object({
+export const medidorSchema = z.object({
   codigo: z
     .string()
     .min(6, { message: 'Debes ingresar mínimo 6 caracteres' })

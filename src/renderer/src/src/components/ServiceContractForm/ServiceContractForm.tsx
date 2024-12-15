@@ -25,11 +25,12 @@ import { fechaActual } from '../../functions/commons/fechas'
 import { UseDescuentosContext } from '../../context/tipos-descuento.context'
 import { useContratoStore } from '../../store/contratos'
 import { useConfigStore } from '../../store/config.store'
-import { medidorEstado } from '@renderer/src/Interfaces/Medidores/medidores.interface'
+import { IMedidor, medidorEstado } from '@renderer/src/Interfaces/Medidores/medidores.interface'
 import { ConfirmDialog, ConfirmDialogProps } from '../Shared/Dialogs/ConfirmDialog'
 import { UseContratosContext } from '@renderer/src/context/contratos.context'
 import { getContratoByContrato } from '@renderer/src/api/Contratos/contratos.service'
 import { WithChildrenModal } from '../Shared/Modals/WithChildrenModal/WithChildrenModal'
+import { FormChangeMedidor } from '@renderer/src/pages/Contratos/FormChangeMedidor'
 interface IFormProps {
   dataServicio: IServicios | null
   dataServicioContratado?: IServiciosContratados | null
@@ -58,8 +59,13 @@ export function ServiceContractForm({
   console.log(errors)
 
   const [valoresDistintos, setValoresDistintos] = useState<boolean>(true)
+  const [dataMedidor, setDataMedidor] = useState<IMedidor | null>(contratoMedidor)
   const { idServicioBase } = useConfigStore((state) => state)
   const [openModalChangeMedidor, setOpenModalChangeMedidor] = useState<boolean>(false)
+  useEffect(() => {
+    console.log('updating data medidor')
+    setDataMedidor(contratoMedidor)
+  }, [contratoMedidor])
   useEffect(() => {
     if (dataServicio) {
       validateServicioBase(dataServicio?.id)
@@ -72,12 +78,12 @@ export function ServiceContractForm({
         setValue('descuentoValor', dataServicioContratado?.descuentoValor || 0)
         setValue('fechaEmision', dataServicioContratado?.fechaEmision || fechaActual())
         setValue('estado', dataServicioContratado?.estado || contratadoActivoEstado.Activo)
-        if (contratoMedidor) {
-          setValue('medidor.codigo', contratoMedidor?.codigo)
-          setValue('medidor.fechaInstalacion', contratoMedidor?.fechaInstalacion)
-          setValue('medidor.marca', contratoMedidor?.marca)
-          setValue('medidor.estado', contratoMedidor?.estado)
-          setValue('medidor.observacion', contratoMedidor?.observacion)
+        if (dataMedidor) {
+          setValue('medidor.codigo', dataMedidor?.codigo)
+          setValue('medidor.fechaInstalacion', dataMedidor?.fechaInstalacion)
+          setValue('medidor.marca', dataMedidor?.marca)
+          setValue('medidor.estado', dataMedidor?.estado)
+          setValue('medidor.observacion', dataMedidor?.observacion)
         }
       } else {
         setValue('numeroPagosIndividual', dataServicio?.numeroPagos || 0)
@@ -92,7 +98,16 @@ export function ServiceContractForm({
     }
     setValue('contratosId', contratoId || 0)
     setValue('medidor.contratosId', contratoId || 0)
-  }, [dataServicio, dataServicioContratado, contratoId, setValue])
+  }, [dataServicio, dataServicioContratado, contratoId, dataMedidor, setValue])
+
+  const updateDataSocioContrato = async (contratoId: number): Promise<void> => {
+    const updatedDataSocioContrato = await getContratoByContrato(contratoId)
+    setSocioContratoData(updatedDataSocioContrato)
+    const medidorExisting = updatedDataSocioContrato.contrato.medidor.find(
+      (medidor) => medidor.estado === medidorEstado.Activo
+    )
+    medidorExisting && setContratoMedidor(medidorExisting)
+  }
 
   const { handleSubmit: handleSubmitWithSubmit, isSubmitting } =
     useSubmitForm<IServiciosContratados>({
@@ -104,12 +119,13 @@ export function ServiceContractForm({
           toast.success(`¡Servicio ${message} con éxito!`, { className: 'notify-success' })
           if (servicioBase && contratoId) {
             reloadRecords()
-            const updatedDataSocioContrato = await getContratoByContrato(+contratoId)
-            setSocioContratoData(updatedDataSocioContrato)
-            const medidorExisting = updatedDataSocioContrato.contrato.medidor.find(
-              (medidor) => medidor.estado === medidorEstado.Activo
-            )
-            medidorExisting && setContratoMedidor(medidorExisting)
+            updateDataSocioContrato(+contratoId)
+            // const updatedDataSocioContrato = await getContratoByContrato(+contratoId)
+            // setSocioContratoData(updatedDataSocioContrato)
+            // const medidorExisting = updatedDataSocioContrato.contrato.medidor.find(
+            //   (medidor) => medidor.estado === medidorEstado.Activo
+            // )
+            // medidorExisting && setContratoMedidor(medidorExisting)
           }
           back()
         } catch (error: any) {
@@ -173,8 +189,12 @@ export function ServiceContractForm({
   const handleClickChangeMedidor = (tf: boolean): void => {
     setOpenModalChangeMedidor(tf)
   }
-  const FormChangeMedidor = (): JSX.Element => {
-    return <form>Hola vas a cambiar de medidor</form>
+  const beforeChangeMedidor = (): void => {
+    if (servicioBase && contratoId) {
+      reloadRecords()
+      updateDataSocioContrato(+contratoId)
+    }
+    handleClickChangeMedidor(false)
   }
   const FormMedidor = (): JSX.Element => {
     setValue('medidor.estado', medidorEstado.Activo)
@@ -259,7 +279,7 @@ export function ServiceContractForm({
           externalHandle={handleClickChangeMedidor}
           title="Cambiar medidor del contrato"
         >
-          <FormChangeMedidor />
+          <FormChangeMedidor beforeSubmit={beforeChangeMedidor} />
         </WithChildrenModal>
       )}
       <div className="body body-contract-form">

@@ -113,7 +113,7 @@ export const socioContratoSchema = z.object({
     errorMap: () => ({ message: 'Debes ingresar un estado válido' })
   })
 })
-export const medidorSchema = z.object({
+const medidorSchema = z.object({
   codigo: z
     .string()
     .min(6, { message: 'Debes ingresar mínimo 6 caracteres' })

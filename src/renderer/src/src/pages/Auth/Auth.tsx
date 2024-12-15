@@ -34,7 +34,7 @@ export function Auth() {
         </div>
       </div>
       <div className="content-slogan">
-        <Image src={siluetComunity} className="solutions" size="massive" />
+        <Image src={siluetComunity} className="solutions" />
         <h3 className="client">Comunidad Santo Domingo N°1</h3>
         <img src={flag} alt="..." className="flag" />
       </div>

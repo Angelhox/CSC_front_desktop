@@ -231,9 +231,7 @@ export function Contratos(): JSX.Element | null {
     setTypeList('ServiceContractForm')
     setTitleList('Contratar servicio')
     setSelectedService(servicio)
-    console.log('Contratado no existe')
     if (servicioContratado) {
-      console.log('Contratado existe')
       setSelectedServicioContratado(servicioContratado)
     }
   }

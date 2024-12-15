@@ -4,6 +4,7 @@ import {
   ISocioContrato
 } from '../../Interfaces/Contratos/contratos.interface'
 import axiosInstance from '../../libs/axios'
+import { IMedidor } from '@renderer/src/Interfaces/Medidores/medidores.interface'
 export async function getContratos(): Promise<IContratoSocioContrato[]> {
   try {
     console.log('Trying to get Contratos')
@@ -123,6 +124,27 @@ export async function changeSector(
     console.log('Error: ', error)
     if (isAxiosError(error)) {
       throw new Error(error.response?.data.message || 'Failed to change sector')
+    } else {
+      throw new Error('An unexpected error occurred')
+    }
+  }
+}
+export async function changeMedidor(
+  newMedidor: IMedidor,
+  updateMedidor: IMedidor,
+  updateMedidorId: number
+): Promise<IMedidor> {
+  try {
+    console.log('Enviando: ', { newMedidor, updateMedidor })
+    const response = await axiosInstance.patch<IMedidor>(
+      `medidor/change-medidor/${updateMedidorId}`,
+      { newMedidor, updateMedidor }
+    )
+    return response.data
+  } catch (error) {
+    console.log('Error: ', error)
+    if (isAxiosError(error)) {
+      throw new Error(error.response?.data.message || 'Failed to change medidor')
     } else {
       throw new Error('An unexpected error occurred')
     }
